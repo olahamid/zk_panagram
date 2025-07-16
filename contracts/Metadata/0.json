@@ -1,0 +1,8 @@
+{
+  "name": "Paragram Winner Badge",
+  "description": "Awarded for solving the word puzzle",
+  "image": "ipfs://bafkreifp5puzoam7bio7zzb5uf7fm67zpp54aynl5civuzc7vzhzi56on4",
+  "attributes": [
+    {"trait_type": "Achievement", "value": "Winner"}
+  ]
+}

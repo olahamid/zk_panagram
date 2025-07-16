@@ -1,0 +1,8 @@
+{
+  "name": "Paragram RunnerUp Badge",
+  "description": "Awarded for solving the word puzzle",
+  "image": "ipfs://bafkreie6sbq76dg4swbpcfvwa4fv5n2mbuyjym24dim3wos4ilf6zywawa",
+  "attributes": [
+    {"trait_type": "Achievement", "value": "RunnerUp"}
+  ]
+}
