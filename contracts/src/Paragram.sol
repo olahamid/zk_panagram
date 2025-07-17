@@ -8,9 +8,19 @@ import {Ownable} from "../lib/openzeppelin-contracts/contracts/access/Ownable.so
 
 
 contract Paragram is ERC1155, Ownable {
+    // state var
+    IVerifier public iVerifier; 
+    uint8 public totalWinner;
+    uint256 public s_RoundStartTime;
+    address public s_CurentRoundWinner;
+    uint256 public constant MAX_DURATION_TIME = 300;
+    bytes32 public s_Answer;
 
-    IVerifier public iVerifier;
+    //error 
+    error Paragram_NewRoundDurationNotReached(uint256 max_duration, uint256 time_difference);
+    error Paragram_RoundWinnerAddressZero();
 
+    // event 
     event verified(bool indexed isVerified);
 
     constructor(IVerifier _verifier) 
@@ -20,8 +30,27 @@ contract Paragram is ERC1155, Ownable {
         iVerifier = _verifier;
     }
 
-    function createNewRound( ) public {
+    function createNewRound(bytes32 _answer) public onlyOwner { 
+        if (s_RoundStartTime == uint256(0)) {
+            s_Answer = _answer;
+            s_RoundStartTime = block.timestamp;
+        } else {
+            if (block.timestamp < (MAX_DURATION_TIME + s_RoundStartTime)) {
+                revert Paragram_NewRoundDurationNotReached(MAX_DURATION_TIME, (block.timestamp - s_RoundStartTime));
+            }
 
+            if (s_CurentRoundWinner == address(0)) {
+                revert Paragram_RoundWinnerAddressZero();
+            }
+        }
+
+        // reset the round
+        s_Answer = _answer;
+        s_RoundStartTime = block.timestamp;
+        s_CurentRoundWinner = address(0);
+        
+        // increment the state winners
+        totalWinner++;
     }
 
     function submitNewGuesses() public {
