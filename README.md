@@ -43,3 +43,17 @@ Verifier Smart Contract Integration:
 To ascertain the correctness of a user's submitted guess, the Panagram contract will delegate this task by calling a separate, specialized "Verifier smart contract."
 
 The blockchain address of this Verifier contract will be a required parameter, passed into the Panagram contract's constructor during deployment.
+
+
+olahamid@DESKTOP-HVIMKBE:~/ZK/zk_panagram$ npm install @noir-lang/noir_js@1.0.0-beta.6 @aztec/bb.js@0.84.0
+
+added 12 packages in 18s
+olahamid@DESKTOP-HVIMKBE:~/ZK/zk_panagram$ npm install ethers
+
+added 9 packages, and audited 22 packages in 7s
+
+3 packages are looking for funding
+  run `npm fund` for details
+
+found 0 vulnerabilities
+olahamid@DESKTOP-HVIMKBE:~/ZK/zk_panagram$ 

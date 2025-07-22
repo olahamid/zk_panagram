@@ -10,14 +10,27 @@ contract InitializeActors is Test {
     //    Actors
     // ------------
 
-    // ** ADMIN ACTORS: PROPOSED BY THE PROTOCOL **
-    address protocolTeamMultisig = makeAddr("mulprotocolTeamMultisigtiSig"); // Multi-sign wallet and deployer
-    address protocolTeamMultisig2 = makeAddr("mulprotocolTeamMultisigtiSig2"); // Alternate Multi-sign wallet and deployer
+    // ADMIN:
+    address public Admin1 = makeAddr("ADMIN1");
+    address public Admin2 = makeAddr("ADMIN2");
 
-    // liquidity Providers:
-    address public LP1 = makeAddr("player");
+    // PLAYERS:
     address public Player2 = makeAddr("Player2");
     address public player3 = makeAddr("Player3");
 
+    // VERIFIER :
     address public verifer = makeAddr("ZKverifier");
+
+    function getProof(bytes32 guess, bytes32 correctAnswer) internal returns (bytes memory result){
+        uint256 num = 5;
+        string[] memory inputs = new string[](num);
+
+        inputs[0] = "npx";
+        inputs[1] = "tsx";
+        inputs[2] = "JS-Script/generateProof.ts";
+        inputs[3] = vm.toString(guess);
+        inputs[4] = vm.toString(correctAnswer);
+
+        return vm.ffi(inputs);
+    } 
 }
